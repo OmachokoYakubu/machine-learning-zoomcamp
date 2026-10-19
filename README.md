@@ -14,9 +14,9 @@ This repository contains all homework assignments, exploratory data analysis not
 | :--- | :--- | :--- | :---: | :--- |
 | **01** | **Introduction to Machine Learning** | [`01-intro/`](./01-intro/) | ✅ Completed | NumPy, Pandas, Car Fuel Efficiency EDA, Linear Regression Weights |
 | **02** | **Machine Learning for Regression** | [`02-regression/`](./02-regression/) | ✅ Completed | Car Fuel Efficiency Linear Regression, Validation Framework, RMSE, Regularization ($r$) |
-| **03** | **Machine Learning for Classification** | `03-classification/` | ⏳ Upcoming | Binary classification, logistic regression, mutual information |
-| **04** | **Evaluation Metrics for Classification** | `04-evaluation/` | ⏳ Upcoming | Accuracy, precision, recall, ROC-AUC, cross-validation |
-| **05** | **Deploying Machine Learning Models** | `05-deployment/` | ⏳ Upcoming | Model packaging, Flask/FastAPI, Pipenv/uv, Docker deployment |
+| **03** | **Machine Learning for Classification** | [`03-classification/`](./03-classification/) | ✅ Completed | Lead scoring, logistic regression, DictVectorizer, mutual information, feature elimination |
+| **04** | **Evaluation Metrics for Classification** | [`04-evaluation/`](./04-evaluation/) | ✅ Completed | ROC AUC, precision/recall curves, F1-score maximization, 5-fold CV, parameter tuning |
+| **05** | **Deploying Machine Learning Models** | [`05-deployment/`](./05-deployment/) | ✅ Completed | Pinned model loading, FastAPI service, Docker containerization, inference verification |
 | **06** | **Decision Trees & Ensemble Learning** | `06-trees/` | ⏳ Upcoming | Decision trees, Random Forest, XGBoost gradient boosting |
 | **Midterm** | **Midterm Project** | `midterm-project/` | ⏳ Upcoming | End-to-end ML project from problem statement to deployed service |
 | **08** | **Deep Learning & Neural Networks** | `08-deep-learning/` | ⏳ Upcoming | TensorFlow/Keras, CNNs, transfer learning |

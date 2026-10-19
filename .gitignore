@@ -49,3 +49,4 @@ venv.bak/
 # Large data files
 *.zip
 *.tar.gz
+*.csv
