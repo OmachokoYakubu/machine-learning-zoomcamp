@@ -50,3 +50,4 @@ venv.bak/
 *.zip
 *.tar.gz
 *.csv
+!midterm-project/data/*.csv

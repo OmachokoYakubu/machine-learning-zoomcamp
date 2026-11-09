@@ -1,0 +1,18 @@
+services:
+  bikepulse-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: bikepulse-api:latest
+    ports:
+      - "9696:9696"
+    environment:
+      - ARTIFACTS_DIR=/code/artifacts
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:9696/health', timeout=3)"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    restart: unless-stopped
+

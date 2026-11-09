@@ -1,0 +1,87 @@
+name: BikePulse Midterm CI, Docker & Kubernetes Verification
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "midterm-project/**"
+      - ".github/workflows/midterm-ci.yml"
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  unit-and-integration-tests:
+    name: Python Quality & Pytest Suite
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: midterm-project
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          version: "0.9.16"
+
+      - name: Install dependencies from lockfile
+        run: uv sync --locked
+
+      - name: Verify dataset SHA-256 integrity
+        run: uv run python scripts/download_data.py
+
+      - name: Run unit and FastAPI integration tests
+        run: uv run pytest -v
+
+  docker-and-kubernetes-e2e:
+    name: Docker Build & Kind Kubernetes Cluster E2E
+    runs-on: ubuntu-latest
+    needs: unit-and-integration-tests
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build production Docker image
+        working-directory: midterm-project
+        run: docker build -t bikepulse-api:ci .
+
+      - name: Smoke-test standalone Docker container
+        working-directory: midterm-project
+        run: |
+          docker run -d --name bikepulse-smoke -p 9696:9696 bikepulse-api:ci
+          for i in $(seq 1 20); do
+            if curl -fsS http://127.0.0.1:9696/health >/dev/null 2>&1; then
+              break
+            fi
+            sleep 1
+          done
+          python3 smoke_test.py --url http://127.0.0.1:9696
+          docker rm -f bikepulse-smoke
+
+      - name: Create Kind Kubernetes cluster
+        uses: helm/kind-action@v1
+        with:
+          cluster_name: bikepulse-k8s
+
+      - name: Load image and deploy Kustomize manifests to Kubernetes
+        working-directory: midterm-project
+        run: |
+          kind load docker-image bikepulse-api:ci --name bikepulse-k8s
+          kubectl apply -k k8s/
+          kubectl rollout status deployment/bikepulse-api --timeout=120s
+          kubectl get pods,svc,hpa -o wide
+
+      - name: Smoke-test live Kubernetes Service via port-forward
+        working-directory: midterm-project
+        run: |
+          kubectl port-forward svc/bikepulse-api 19696:80 >/tmp/pf.log 2>&1 &
+          PF_PID=$!
+          trap "kill $PF_PID 2>/dev/null || true" EXIT
+          for i in $(seq 1 20); do
+            if curl -fsS http://127.0.0.1:19696/health >/dev/null 2>&1; then
+              break
+            fi
+            sleep 1
+          done
+          python3 smoke_test.py --url http://127.0.0.1:19696
+

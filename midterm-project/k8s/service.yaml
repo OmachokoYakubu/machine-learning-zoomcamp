@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: bikepulse-api
+  labels:
+    app: bikepulse-api
+spec:
+  type: ClusterIP
+  selector:
+    app: bikepulse-api
+  ports:
+    - name: http
+      port: 80
+      targetPort: 9696
+

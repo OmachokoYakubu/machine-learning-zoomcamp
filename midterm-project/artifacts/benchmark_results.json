@@ -1,0 +1,63 @@
+{
+  "validation_leaderboard": [
+    {
+      "family": "XGBoost",
+      "params": {
+        "n_estimators": 350,
+        "learning_rate": 0.1,
+        "max_depth": 8,
+        "min_child_weight": 3,
+        "subsample": 0.85,
+        "colsample_bytree": 0.85,
+        "target_transform": "log1p"
+      },
+      "rmse": 39.2986,
+      "mae": 23.6872,
+      "r2": 0.9525
+    },
+    {
+      "family": "Random Forest",
+      "params": {
+        "n_estimators": 100,
+        "max_depth": 24,
+        "min_samples_leaf": 2,
+        "target_transform": "log1p"
+      },
+      "rmse": 44.3666,
+      "mae": 26.7272,
+      "r2": 0.9395
+    },
+    {
+      "family": "Decision Tree",
+      "params": {
+        "max_depth": 20,
+        "min_samples_leaf": 10,
+        "target_transform": "log1p"
+      },
+      "rmse": 55.171,
+      "mae": 33.6826,
+      "r2": 0.9064
+    },
+    {
+      "family": "Linear (Ridge)",
+      "params": {
+        "alpha": 0.01,
+        "target_transform": "log1p"
+      },
+      "rmse": 67.9326,
+      "mae": 40.2897,
+      "r2": 0.8581
+    }
+  ],
+  "cross_validation": {
+    "cv_folds": 5,
+    "cv_rmse_mean": 40.6146,
+    "cv_rmse_std": 1.1672,
+    "cv_r2_mean": 0.9503
+  },
+  "final_test_metrics": {
+    "rmse": 38.7094,
+    "mae": 22.8133,
+    "r2": 0.9527
+  }
+}

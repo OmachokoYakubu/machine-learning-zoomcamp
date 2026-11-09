@@ -1,0 +1,48 @@
+{
+  "health": {
+    "status": "ok",
+    "service": "bikepulse-demand-forecasting",
+    "model_family": "XGBoost",
+    "model_sha256": "c5ffd221234ee9b3b7bdf791a98fb7bbb9125d6edbe21856c6d127893cbe1e43",
+    "test_metrics": {
+      "rmse": 38.7094,
+      "mae": 22.8133,
+      "r2": 0.9527
+    }
+  },
+  "rush_hour_forecast": {
+    "predicted_hourly_rentals": 891.95,
+    "predicted_hourly_rentals_rounded": 892,
+    "dispatch_tier": "surge_dispatch",
+    "recommended_action": "Peak surge alert; actively clear downtown destination docks and replenish residential origins.",
+    "context_summary": {
+      "hour": 17,
+      "day_regime": "workingday",
+      "season": "fall",
+      "weather": "clear",
+      "temp_norm": 0.585366,
+      "humidity_norm": 0.5
+    },
+    "model_sha256": "c5ffd221234ee9b3b7bdf791a98fb7bbb9125d6edbe21856c6d127893cbe1e43"
+  },
+  "rainy_night_forecast": {
+    "predicted_hourly_rentals": 1.28,
+    "predicted_hourly_rentals_rounded": 1,
+    "dispatch_tier": "low_demand",
+    "recommended_action": "Standard passive monitoring; ideal window for depot charging and maintenance.",
+    "context_summary": {
+      "hour": 3,
+      "day_regime": "workingday",
+      "season": "spring",
+      "weather": "light_precip",
+      "temp_norm": 0.097561,
+      "humidity_norm": 0.88
+    },
+    "model_sha256": "c5ffd221234ee9b3b7bdf791a98fb7bbb9125d6edbe21856c6d127893cbe1e43"
+  },
+  "batch_summary": {
+    "horizon_hours": 4,
+    "peak_hour": 17,
+    "peak_predicted_rentals": 819.44
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "project": "BikePulse Hourly Demand Forecasting",
+  "dataset": "bike_sharing_hour.csv",
+  "dataset_sha256": "e03de4ee4ef4dc376ac6e04bf829673c6269e8eba5c60fa121640fa2f829504f",
+  "rows_total": 17379,
+  "rows_train": 10427,
+  "rows_val": 3476,
+  "rows_test": 3476,
+  "target": "cnt",
+  "target_transform": "log1p",
+  "champion_family": "XGBoost",
+  "champion_params": {
+    "n_estimators": 350,
+    "learning_rate": 0.1,
+    "max_depth": 8,
+    "min_child_weight": 3,
+    "subsample": 0.85,
+    "colsample_bytree": 0.85
+  },
+  "validation_metrics": {
+    "rmse": 39.2986,
+    "mae": 23.6872,
+    "r2": 0.9525
+  },
+  "cross_validation": {
+    "cv_folds": 5,
+    "cv_rmse_mean": 40.6146,
+    "cv_rmse_std": 1.1672,
+    "cv_r2_mean": 0.9503
+  },
+  "test_metrics": {
+    "rmse": 38.7094,
+    "mae": 22.8133,
+    "r2": 0.9527
+  },
+  "numeric_defaults": {
+    "temp": 0.5,
+    "atemp": 0.4848,
+    "hum": 0.63,
+    "windspeed": 0.1642
+  },
+  "encoded_feature_count": 134,
+  "top_feature_importances": [
+    {
+      "feature": "is_night",
+      "importance": 0.39157
+    },
+    {
+      "feature": "regime_hour=workingday_hr_06",
+      "importance": 0.15823
+    },
+    {
+      "feature": "hr",
+      "importance": 0.08778
+    },
+    {
+      "feature": "regime_hour=weekend_hr_02",
+      "importance": 0.07378
+    },
+    {
+      "feature": "workingday",
+      "importance": 0.02668
+    },
+    {
+      "feature": "is_morning_rush",
+      "importance": 0.02525
+    },
+    {
+      "feature": "regime_hour=workingday_hr_05",
+      "importance": 0.02134
+    },
+    {
+      "feature": "regime_hour=weekend_hr_07",
+      "importance": 0.01674
+    },
+    {
+      "feature": "is_evening_rush",
+      "importance": 0.01623
+    },
+    {
+      "feature": "regime_hour=workingday_hr_08",
+      "importance": 0.01446
+    },
+    {
+      "feature": "regime_hour=weekend_hr_03",
+      "importance": 0.01126
+    },
+    {
+      "feature": "day_regime=workingday",
+      "importance": 0.01106
+    }
+  ],
+  "versions": {
+    "scikit_learn": "1.9.1",
+    "xgboost": "3.4.1",
+    "pandas": "3.1.1",
+    "numpy": "2.5.4"
+  },
+  "model_artifact": "model.bin",
+  "model_sha256": "c5ffd221234ee9b3b7bdf791a98fb7bbb9125d6edbe21856c6d127893cbe1e43"
+}

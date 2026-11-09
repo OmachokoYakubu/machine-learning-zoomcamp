@@ -10,17 +10,18 @@
 
 | Week / Module | Topic | Deadline | Status | Deliverables |
 | :--- | :--- | :--- | :---: | :--- |
-| **Module 01** | **Introduction to Machine Learning** | 2026-09-28 | **Completed** | Pandas, NumPy, Fuel Efficiency dataset, Matrix Inverse |
-| **Module 02** | **Machine Learning for Regression** | 2026-10-05 | **Completed** | Train/Val/Test split, Linear Regression, RMSE, Regularization |
-| **Module 03** | **Machine Learning for Classification** | 2026-10-12 | **Completed** | Lead scoring, Logistic Regression, Mutual info, Feature elimination |
-| **Module 04** | **Evaluation Metrics for Classification** | 2026-10-19 | **Completed** | ROC AUC, Precision/Recall intersection, F1 max, 5-Fold CV |
-| **Module 05** | **Deploying Machine Learning Models** | 2026-10-26 | **Completed** | Pinned artifact inference, FastAPI service, Docker container |
-| **Module 06** | **Decision Trees & Ensemble Learning** | 2026-11-02 | Upcoming | Decision trees, Random Forests, XGBoost |
-| **Midterm** | **Midterm Project** | 2026-11-16 | Upcoming | End-to-end ML project submission & peer review |
-| **Module 08** | **Deep Learning & Neural Networks** | 2026-11-30 | Upcoming | Computer vision, CNNs, image classification |
-| **Module 09** | **Serverless Deep Learning** | 2026-12-07 | Upcoming | Serverless deployment, AWS Lambda, Docker |
-| **Module 10** | **Kubernetes & Model Serving** | 2026-12-14 | Upcoming | Kubernetes clusters, ingress, horizontal pod autoscaling |
-| **Capstone 1** | **Capstone Project 1** | 2027-01-11 | Upcoming | Capstone project submission & peer review |
+| **Module 01** | **Introduction to Machine Learning** | 2026-09-21 | **Completed** | Pandas, NumPy, Fuel Efficiency dataset, Matrix Inverse |
+| **Module 02** | **Machine Learning for Regression** | 2026-09-28 | **Completed** | Train/Val/Test split, Linear Regression, RMSE, Regularization |
+| **Module 03** | **Machine Learning for Classification** | 2026-10-05 | **Completed** | Lead scoring, Logistic Regression, Mutual info, Feature elimination |
+| **Module 04** | **Evaluation Metrics for Classification** | 2026-10-12 | **Completed** | ROC AUC, Precision/Recall intersection, F1 max, 5-Fold CV |
+| **Module 05** | **Deploying Machine Learning Models** | 2026-10-19 | **Completed** | Pinned artifact inference, FastAPI service, Docker container |
+| **Module 06** | **Decision Trees & Ensemble Learning** | 2026-10-26 | **Completed** | Decision trees, Random Forests, XGBoost (`06-trees/`) |
+| **Midterm** | **Midterm Project** | 2026-11-09 *(Peer review: 2026-11-16)* | **Completed** | End-to-end ML project (`midterm-project/`) & 3 peer reviews |
+| **Module 08** | **Deep Learning & Neural Networks** | 2026-11-23 | Upcoming | Computer vision, CNNs, image classification |
+| **Module 09** | **Serverless Deep Learning** | 2026-11-30 | Upcoming | Serverless deployment, AWS Lambda, Docker |
+| **Module 10** | **Kubernetes & Model Serving** | 2026-12-07 | Upcoming | Kubernetes clusters, ingress, horizontal pod autoscaling |
+| **Capstone 1** | **Capstone Project 1** | 2027-01-04 *(Peer review: 2027-01-11)* | Upcoming | Capstone project submission & peer review |
+| **Capstone 2** | **Capstone Project 2** | 2027-01-18 *(Peer review: 2027-01-25)* | Optional | Second capstone opportunity & peer review |
 
 ---
 
@@ -99,4 +100,20 @@
 | **Q4** | **Conversion Probability (API)** | FastAPI service on Q4 lead: $0.769799 \approx 0.770$ | Text: `0.770` | `answer_680` |
 | **Q5** | **Python Base Image** | Declared in Dockerfile | **python:3.11.15-slim-bookworm** | `radio-681-2` |
 | **Q6** | **Conversion Probability (Container)** | Container request on Q4 lead: $0.769799 \approx 0.770$ | Text: `0.770` | `answer_682` |
+
+---
+
+### Homework 6: Decision Trees and Ensemble Learning
+* **Portal Link:** [courses.datatalks.club/ml-zoomcamp-2026/homework/hw06](https://courses.datatalks.club/ml-zoomcamp-2026/homework/hw06)
+* **Dataset:** `car_fuel_efficiency_2026.csv` (`fuel_efficiency_mpg` target, missing values filled with `0`)
+
+| Question | Topic | Solution / Output | Selected Option |
+| :--- | :--- | :--- | :--- |
+| **Q1** | **Decision Tree Split Feature (`max_depth=1`)** | Single decision stump splits on `model_year <= 78.5` | **`'model_year'`** |
+| **Q2** | **Random Forest Validation RMSE (`n_estimators=10`)** | Validation $\text{RMSE} = 1.8371 \approx 1.837$ | **1.837** |
+| **Q3** | **Tuning `n_estimators` (`[10, 50, 100, 150]`)** | Lowest validation $\text{RMSE} = 1.7681$ at $n = 100$ | **100** |
+| **Q4** | **Tuning `max_depth` (`[10, 15, 20, 25]`)** | Lowest mean $\text{RMSE} = 1.7554$ at $\text{max\_depth} = 10$ | **10** |
+| **Q5** | **Most Important Feature (`max_depth=20, n=10`)** | `vehicle_weight` importance $= 0.2039$ | **`vehicle_weight`** |
+| **Q6** | **XGBoost Learning Rate (`eta` $\in \{0.3, 0.1\}$)** | $\eta = 0.1$ achieves lower validation $\text{RMSE} = 1.7248$ (vs $1.8265$) | **0.1** |
+
 

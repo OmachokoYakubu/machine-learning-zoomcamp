@@ -17,8 +17,8 @@ This repository contains all homework assignments, exploratory data analysis not
 | **03** | **Machine Learning for Classification** | [`03-classification/`](./03-classification/) | ✅ Completed | Lead scoring, logistic regression, DictVectorizer, mutual information, feature elimination |
 | **04** | **Evaluation Metrics for Classification** | [`04-evaluation/`](./04-evaluation/) | ✅ Completed | ROC AUC, precision/recall curves, F1-score maximization, 5-fold CV, parameter tuning |
 | **05** | **Deploying Machine Learning Models** | [`05-deployment/`](./05-deployment/) | ✅ Completed | Pinned model loading, FastAPI service, Docker containerization, inference verification |
-| **06** | **Decision Trees & Ensemble Learning** | `06-trees/` | ⏳ Upcoming | Decision trees, Random Forest, XGBoost gradient boosting |
-| **Midterm** | **Midterm Project** | `midterm-project/` | ⏳ Upcoming | End-to-end ML project from problem statement to deployed service |
+| **06** | **Decision Trees & Ensemble Learning** | [`06-trees/`](./06-trees/) | ✅ Completed | Decision trees, Random Forest, XGBoost gradient boosting |
+| **Midterm** | **Midterm Project — BikePulse** | [`midterm-project/`](./midterm-project/) | 🚀 **Submitted** | Urban micromobility hourly demand forecasting (EDA, 4 model families, FastAPI, Docker, K8s) |
 | **08** | **Deep Learning & Neural Networks** | `08-deep-learning/` | ⏳ Upcoming | TensorFlow/Keras, CNNs, transfer learning |
 | **09** | **Serverless Deep Learning** | `09-serverless/` | ⏳ Upcoming | AWS Lambda, TF-Lite, containerized serverless inference |
 | **10** | **Kubernetes & Model Serving** | `10-kubernetes/` | ⏳ Upcoming | Kubernetes deployments, services, HPA, TF-Serving |

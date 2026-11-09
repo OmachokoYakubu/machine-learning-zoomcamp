@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+notebook.ipynb
+tests/
+docs/
+k8s/
+scripts/
+data/
+Makefile
+render.yaml
+docker-compose.yml
+

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BikePulse — Micromobility Fleet Demand & Dispatch</title>
+  <style>
+    :root {
+      --bg: #0b1120;
+      --panel: #111827;
+      --border: #1f2937;
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --accent: #38bdf8;
+      --green: #10b981;
+      --amber: #f59e0b;
+      --red: #ef4444;
+    }
+
+    * {
+      box-sizing: border-box;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background: radial-gradient(circle at top, #172554 0%, var(--bg) 55%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 28px 20px;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 1.55rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand p {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .badge-api {
+      background: rgba(56, 189, 248, 0.14);
+      color: var(--accent);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 22px;
+    }
+
+    @media (max-width: 840px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: rgba(17, 24, 39, 0.92);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+    }
+
+    .card h2 {
+      margin: 0 0 14px;
+      font-size: 1.08rem;
+      color: #e5e7eb;
+    }
+
+    .presets {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .preset-btn {
+      background: #1e293b;
+      color: #cbd5e1;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 7px 11px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .preset-btn:hover {
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+
+    select,
+    input[type="range"],
+    input[type="number"] {
+      width: 100%;
+      background: #0f172a;
+      color: var(--text);
+      border: 1px solid #334155;
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 0.9rem;
+    }
+
+    .range-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .submit-btn {
+      margin-top: 18px;
+      width: 100%;
+      background: linear-gradient(135deg, #0284c7, #2563eb);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 0.96rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .kpi-box {
+      text-align: center;
+      padding: 20px 14px;
+      background: #0f172a;
+      border-radius: 12px;
+      border: 1px solid #1e293b;
+      margin-bottom: 16px;
+    }
+
+    .kpi-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    .kpi-value {
+      font-size: 3.2rem;
+      font-weight: 800;
+      margin: 6px 0;
+      color: #fff;
+    }
+
+    .kpi-unit {
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .tier-pill {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+    }
+
+    .tier-low_demand {
+      background: rgba(148, 163, 184, 0.2);
+      color: #cbd5e1;
+    }
+
+    .tier-normal_operations {
+      background: rgba(16, 185, 129, 0.2);
+      color: #34d399;
+    }
+
+    .tier-rebalance_watch {
+      background: rgba(245, 158, 11, 0.2);
+      color: #fbbf24;
+    }
+
+    .tier-surge_dispatch {
+      background: rgba(239, 68, 68, 0.22);
+      color: #f87171;
+    }
+
+    .action-box {
+      background: #0f172a;
+      border-left: 4px solid var(--accent);
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      line-height: 1.45;
+      color: #e2e8f0;
+      margin-bottom: 16px;
+    }
+
+    pre {
+      background: #090d16;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 0.76rem;
+      color: #93c5fd;
+      overflow-x: auto;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <h1>🚲 BikePulse Operations Console</h1>
+        <p>Urban Micromobility Hourly Demand Forecasting & Rebalancing Dispatch (XGBoost + FastAPI)</p>
+      </div>
+      <a class="badge-api" href="/docs" target="_blank">OpenAPI / Swagger Docs →</a>
+    </header>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Hourly Weather & Calendar Conditions</h2>
+        <div class="presets">
+          <button class="preset-btn" type="button" onclick="applyPreset('rush')">🏢 Weekday 17:00 Rush</button>
+          <button class="preset-btn" type="button" onclick="applyPreset('weekend')">☀️ Sunny Saturday 14:00</button>
+          <button class="preset-btn" type="button" onclick="applyPreset('storm')">🌧️ Rainy Night 03:00</button>
+        </div>
+
+        <form id="forecast-form">
+          <div class="form-grid">
+            <div>
+              <div class="range-row"><label>Hour of Day (0–23)</label><span id="hr-val">17:00</span></div>
+              <input type="range" id="hr" min="0" max="23" value="17"
+                oninput="document.getElementById('hr-val').textContent=this.value.padStart(2,'0')+':00'" />
+            </div>
+            <div>
+              <label>Month</label>
+              <select id="mnth">
+                <option value="1">January</option>
+                <option value="3">March</option>
+                <option value="5">May</option>
+                <option value="7">July</option>
+                <option value="9" selected>September</option>
+                <option value="11">November</option>
+              </select>
+            </div>
+            <div>
+              <label>Season</label>
+              <select id="season">
+                <option value="1">Spring</option>
+                <option value="2">Summer</option>
+                <option value="3" selected>Fall</option>
+                <option value="4">Winter</option>
+              </select>
+            </div>
+            <div>
+              <label>Day Type (Weekday)</label>
+              <select id="weekday">
+                <option value="1">Monday</option>
+                <option value="2">Tuesday</option>
+                <option value="3" selected>Wednesday</option>
+                <option value="5">Friday</option>
+                <option value="6">Saturday</option>
+                <option value="0">Sunday</option>
+              </select>
+            </div>
+            <div>
+              <label>Weather Regime</label>
+              <select id="weathersit">
+                <option value="1" selected>1 — Clear / Partly Cloudy</option>
+                <option value="2">2 — Mist / Broken Clouds</option>
+                <option value="3">3 — Light Rain / Light Snow</option>
+                <option value="4">4 — Heavy Rain / Storm</option>
+              </select>
+            </div>
+            <div>
+              <label>Public Holiday</label>
+              <select id="holiday">
+                <option value="0" selected>No (Regular Schedule)</option>
+                <option value="1">Yes (Public Holiday)</option>
+              </select>
+            </div>
+            <div>
+              <div class="range-row"><label>Temperature (°C)</label><span id="temp-val">24 °C</span></div>
+              <input type="range" id="temp_celsius" min="-5" max="39" value="24"
+                oninput="document.getElementById('temp-val').textContent=this.value+' °C'" />
+            </div>
+            <div>
+              <div class="range-row"><label>Humidity (%)</label><span id="hum-val">52 %</span></div>
+              <input type="range" id="humidity_pct" min="10" max="100" value="52"
+                oninput="document.getElementById('hum-val').textContent=this.value+' %'" />
+            </div>
+            <div style="grid-column: span 2;">
+              <div class="range-row"><label>Wind Speed (km/h)</label><span id="wind-val">12 km/h</span></div>
+              <input type="range" id="windspeed_kmh" min="0" max="55" value="12"
+                oninput="document.getElementById('wind-val').textContent=this.value+' km/h'" />
+            </div>
+          </div>
+          <button class="submit-btn" type="submit">Run Real-Time Demand Forecast</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>Predicted Demand & Dispatch Guidance</h2>
+        <div class="kpi-box">
+          <div class="kpi-label">Expected Network Rentals</div>
+          <div class="kpi-value" id="pred-count">--</div>
+          <div class="kpi-unit">bikes / hour</div>
+        </div>
+        <div style="text-align:center;">
+          <span id="tier-badge" class="tier-pill tier-normal_operations">Ready</span>
+        </div>
+        <div class="action-box" id="action-text">Submit hourly parameters to compute fleet rebalancing guidance.</div>
+        <h2>Live JSON API Payload</h2>
+        <pre id="json-out">{}</pre>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function applyPreset(kind) {
+      const set = (id, v) => { const el = document.getElementById(id); el.value = v; el.dispatchEvent(new Event('input')); };
+      if (kind === 'rush') {
+        set('hr', 17); set('mnth', 9); set('season', 3); set('weekday', 3);
+        set('weathersit', 1); set('holiday', 0); set('temp_celsius', 24); set('humidity_pct', 50); set('windspeed_kmh', 11);
+      } else if (kind === 'weekend') {
+        set('hr', 14); set('mnth', 7); set('season', 3); set('weekday', 6);
+        set('weathersit', 1); set('holiday', 0); set('temp_celsius', 28); set('humidity_pct', 45); set('windspeed_kmh', 10);
+      } else {
+        set('hr', 3); set('mnth', 1); set('season', 1); set('weekday', 2);
+        set('weathersit', 3); set('holiday', 0); set('temp_celsius', 4); set('humidity_pct', 88); set('windspeed_kmh', 28);
+      }
+      runPrediction();
+    }
+
+    async function runPrediction(e) {
+      if (e) e.preventDefault();
+      const payload = {
+        hr: Number(document.getElementById('hr').value),
+        mnth: Number(document.getElementById('mnth').value),
+        season: Number(document.getElementById('season').value),
+        weekday: Number(document.getElementById('weekday').value),
+        weathersit: Number(document.getElementById('weathersit').value),
+        holiday: Number(document.getElementById('holiday').value),
+        temp_celsius: Number(document.getElementById('temp_celsius').value),
+        humidity_pct: Number(document.getElementById('humidity_pct').value),
+        windspeed_kmh: Number(document.getElementById('windspeed_kmh').value)
+      };
+      const res = await fetch('/predict', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json();
+      document.getElementById('pred-count').textContent = data.predicted_hourly_rentals_rounded;
+      const badge = document.getElementById('tier-badge');
+      badge.textContent = data.dispatch_tier.replace('_', ' ');
+      badge.className = 'tier-pill tier-' + data.dispatch_tier;
+      document.getElementById('action-text').textContent = data.recommended_action;
+      document.getElementById('json-out').textContent = JSON.stringify(data, null, 2);
+    }
+
+    document.getElementById('forecast-form').addEventListener('submit', runPrediction);
+    window.addEventListener('DOMContentLoaded', () => runPrediction());
+  </script>
+</body>
+
+</html>
