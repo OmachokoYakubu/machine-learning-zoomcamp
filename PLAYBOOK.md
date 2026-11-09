@@ -16,10 +16,10 @@
 | **Module 04** | **Evaluation Metrics for Classification** | 2026-10-12 | **Completed** | ROC AUC, Precision/Recall intersection, F1 max, 5-Fold CV |
 | **Module 05** | **Deploying Machine Learning Models** | 2026-10-19 | **Completed** | Pinned artifact inference, FastAPI service, Docker container |
 | **Module 06** | **Decision Trees & Ensemble Learning** | 2026-10-26 | **Completed** | Decision trees, Random Forests, XGBoost (`06-trees/`) |
-| **Midterm** | **Midterm Project** | 2026-11-09 *(Peer review: 2026-11-16)* | **Completed** | End-to-end ML project (`midterm-project/`) & 3 peer reviews |
-| **Module 08** | **Deep Learning & Neural Networks** | 2026-11-23 | Upcoming | Computer vision, CNNs, image classification |
-| **Module 09** | **Serverless Deep Learning** | 2026-11-30 | Upcoming | Serverless deployment, AWS Lambda, Docker |
-| **Module 10** | **Kubernetes & Model Serving** | 2026-12-07 | Upcoming | Kubernetes clusters, ingress, horizontal pod autoscaling |
+| **Midterm** | **Midterm Project (`BikePulse`)** | 2026-11-16 *(Portal live deadline; Peer review: 2026-11-23)* | **Completed / CI Green** | End-to-end ML project (`midterm-project/`, Test RMSE `38.71`, $R^2=0.9527$) & 3 peer reviews |
+| **Module 08** | **Deep Learning & Neural Networks** | 2026-11-30 | Upcoming | Computer vision, CNNs, PyTorch image classification |
+| **Module 09** | **Serverless Deep Learning** | 2026-12-07 | Upcoming | Serverless deployment, ONNX, AWS Lambda, Docker |
+| **Module 10** | **Kubernetes & Model Serving** | 2026-12-14 | Upcoming | Kubernetes clusters, ingress, horizontal pod autoscaling |
 | **Capstone 1** | **Capstone Project 1** | 2027-01-04 *(Peer review: 2027-01-11)* | Upcoming | Capstone project submission & peer review |
 | **Capstone 2** | **Capstone Project 2** | 2027-01-18 *(Peer review: 2027-01-25)* | Optional | Second capstone opportunity & peer review |
 
