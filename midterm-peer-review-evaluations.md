@@ -12,46 +12,68 @@
 
 | Assignment | Peer Pseudonym | Project / Repository | Evaluated Commit | Portal Link | Score |
 | :--- | :--- | :--- | :---: | :--- | :---: |
-| **#14893** | **Peaceful Raman** | [`daler-rahimov/customer_churn_prediction_ml`](https://github.com/daler-rahimov/customer_churn_prediction_ml) *(HTTP 404 — Private / Not Found)* | `1b76f3f` | [Eval #14893](https://courses.datatalks.club/ml-zoomcamp-2026/project/midterm/eval/14893) | **0 / 16** |
-| **#14894** | **Stoic Hugle** | [`tishapereira20/flight_price_prediction`](https://github.com/tishapereira20/flight_price_prediction) *(HTTP 404 — Private / Not Found)* | `07d6d5c` | [Eval #14894](https://courses.datatalks.club/ml-zoomcamp-2026/project/midterm/eval/14894) | **0 / 16** |
+| **#14893** | **Peaceful Raman** | [**Stellar Classification (SDSS17)** (`Sanyaman58/zoomcamp2026_midterm_project`)](https://github.com/Sanyaman58/zoomcamp2026_midterm_project) | `a37ee87` | [Eval #14893](https://courses.datatalks.club/ml-zoomcamp-2026/project/midterm/eval/14893) | **14 / 16** |
+| **#14894** | **Stoic Hugle** | [**Shopping Purchase Prediction** (`salexyun/shopping-purchase-prediction`)](https://github.com/salexyun/shopping-purchase-prediction) | `87c14e5` | [Eval #14894](https://courses.datatalks.club/ml-zoomcamp-2026/project/midterm/eval/14894) | **16 / 16** |
 | **#14895** | **Eager Kepler** | [**NFL Q3 Win Probability** (`VegasKevin/NFL_Game_ML_Model_mid`)](https://github.com/VegasKevin/NFL_Game_ML_Model_mid) | `f5165f9` | [Eval #14895](https://courses.datatalks.club/ml-zoomcamp-2026/project/midterm/eval/14895) | **11 / 16** |
 
 ---
 
 ## 2. Comparative Score Matrix (9 Criteria)
 
-| # | Criterion | Max Pts | #14893 (`customer_churn`) | #14894 (`flight_price`) | #14895 (`NFL_Game_ML_Model_mid`) |
+| # | Criterion | Max Pts | #14893 (`Stellar SDSS17`) | #14894 (`Shopping Purchase`) | #14895 (`NFL Q3 Win Prob`) |
 | :---: | :--- | :---: | :---: | :---: | :---: |
-| **1** | **Problem description** | 2 | 0 | 0 | **2** |
-| **2** | **EDA** | 2 | 0 | 0 | **1** |
-| **3** | **Model training** | 3 | 0 | 0 | **3** |
-| **4** | **Exporting notebook to script** | 1 | 0 | 0 | **1** |
-| **5** | **Reproducibility** | 1 | 0 | 0 | **1** |
-| **6** | **Model deployment** | 1 | 0 | 0 | **0** |
-| **7** | **Dependency and environment management** | 2 | 0 | 0 | **1** |
-| **8** | **Containerization** | 2 | 0 | 0 | **2** |
-| **9** | **Cloud deployment** | 2 | 0 | 0 | **0** |
-| | **Total Score** | **16** | **0 / 16** | **0 / 16** | **11 / 16** |
+| **1** | **Problem description** | 2 | **2** | **2** | **2** |
+| **2** | **EDA** | 2 | **2** | **2** | **1** |
+| **3** | **Model training** | 3 | **3** | **3** | **3** |
+| **4** | **Exporting notebook to script** | 1 | **1** | **1** | **1** |
+| **5** | **Reproducibility** | 1 | **1** | **1** | **1** |
+| **6** | **Model deployment** | 1 | **1** | **1** | **0** |
+| **7** | **Dependency and environment management** | 2 | **2** | **2** | **1** |
+| **8** | **Containerization** | 2 | **2** | **2** | **2** |
+| **9** | **Cloud deployment** | 2 | **0** | **2** | **0** |
+| | **Total Score** | **16** | **14 / 16** | **16 / 16** | **11 / 16** |
 
 ---
 
-## 3. Detailed Evaluation #14893 — `customer_churn_prediction_ml` (Peaceful Raman)
+## 3. Detailed Evaluation #14893 — `zoomcamp2026_midterm_project` (Peaceful Raman)
 
-- **Repository URL:** `https://github.com/daler-rahimov/customer_churn_prediction_ml`
-- **Commit ID:** `1b76f3f`
-- **Accessibility Check:** Accessing `https://github.com/daler-rahimov/customer_churn_prediction_ml` via browser, `git clone`, and the GitHub REST API returns **HTTP 404 (Repository not found)**.
+- **Repository URL:** `https://github.com/Sanyaman58/zoomcamp2026_midterm_project`
+- **Commit ID:** `a37ee87`
+
+### Criterion-by-Criterion Breakdown
+1. **Problem description (2/2 — `radio-217-3`):** `README.md` clearly describes the SDSS17 stellar object classification problem—predicting whether a celestial object is a `STAR`, `GALAXY`, or `QSO` (Quasar) from 8 photometric and redshift parameters—and explains the domain motivation.
+2. **EDA (2/2 — `radio-218-3`):** `notebook.ipynb` conducts outlier/anomaly filtering (`g > -9999`), class distribution analysis, correlation matrix inspection, mutual information scoring, and feature importance comparison.
+3. **Model training (3/3 — `radio-219-4`):** Trains and tunes multiple model families (`LogisticRegression`, `DecisionTreeClassifier`, `RandomForestClassifier`, and multi-class `XGBoost`), selecting tuned `XGBoost` (`eta=0.1, max_depth=6, min_child_weight=5`).
+4. **Exporting notebook to script (1/1 — `radio-220-2`):** Model training pipeline is exported cleanly to `train.py`.
+5. **Reproducibility (1/1 — `radio-221-2`):** `star_classification.csv` is committed directly in the repository, allowing `notebook.ipynb` and `train.py` to run end to end without external data setup.
+6. **Model deployment (1/1 — `radio-222-2`):** `predict.py` serves the serialized `xgb_model_depth_6.bin` model via a Flask `/predict` endpoint (`port 9696`), paired with `predict-test.py`.
+7. **Dependency and environment management (2/2 — `radio-223-3`):** `Pipfile` and `Pipfile.lock` are included with clear `pipenv install` and `pipenv run` commands in `README.md`.
+8. **Containerization (2/2 — `radio-224-3`):** `Dockerfile` is provided and `README.md` documents `docker build -t stellar-classification .` and `docker run -it --rm -p 9696:9696 stellar-classification`.
+9. **Cloud deployment (0/2 — `radio-225-1`):** No cloud or Kubernetes deployment is included.
+
 - **Note to Peer:**
-  > Unfortunately, `https://github.com/daler-rahimov/customer_churn_prediction_ml` returns HTTP 404 (Repository not found) when accessed publicly or via `git clone` during the peer evaluation window. Please set the GitHub repository visibility to Public so reviewers can inspect your Midterm Project.
+  > Very clean end-to-end astronomy classification project! Committing `star_classification.csv`, providing both `Pipfile`/`Pipfile.lock` and a `Dockerfile`, and comparing 4 distinct classifiers (`LogisticRegression`, `DecisionTree`, `RandomForest`, `XGBoost`) made reproduction effortless. In `train.py` line 116, consider passing `(dval, 'val')` instead of `(dtest, 'test')` to `evals` during training and using `gunicorn`/`waitress` in your `Dockerfile` entrypoint.
 
 ---
 
-## 4. Detailed Evaluation #14894 — `flight_price_prediction` (Stoic Hugle)
+## 4. Detailed Evaluation #14894 — `shopping-purchase-prediction` (Stoic Hugle)
 
-- **Repository URL:** `https://github.com/tishapereira20/flight_price_prediction`
-- **Commit ID:** `07d6d5c`
-- **Accessibility Check:** Accessing `https://github.com/tishapereira20/flight_price_prediction` via browser, `git clone`, and the GitHub REST API returns **HTTP 404 (Repository not found)**.
+- **Repository URL:** `https://github.com/salexyun/shopping-purchase-prediction`
+- **Commit ID:** `87c14e5`
+
+### Criterion-by-Criterion Breakdown
+1. **Problem description (2/2 — `radio-217-3`):** `README.md` frames the e-commerce session purchase ranking problem on the UCI Online Shoppers Purchasing Intention dataset (`12,330` sessions, `15.5%` positive rate), explains why leakage-prone exit features (`PageValues`, `BounceRates`, `ExitRates`) are excluded, and discusses deployment calibration limits.
+2. **EDA (2/2 — `radio-218-3`):** `notebook.ipynb` inspects missing values, numerical ranges, duplicate predictor profiles, class imbalance, precision-recall curves, calibration curves, and permutation feature importance.
+3. **Model training (3/3 — `radio-219-4`):** Compares a prior-only baseline, tuned `LogisticRegression`, `HistGradientBoostingClassifier`, and `RandomForestClassifier` with group-aware 3-fold cross-validation optimizing Average Precision (`0.371` CV AP, `0.321` holdout AP, `0.750` holdout ROC AUC).
+4. **Exporting notebook to script (1/1 — `radio-220-2`):** Exported to `train.py`, writing `artifacts/model.joblib` and `artifacts/model.metrics.json`.
+5. **Reproducibility (1/1 — `radio-221-2`):** `data/online_shoppers_intention.csv` (`SHA-256: b3055ee3...`) is committed in the repo with deterministic `uv sync --locked` instructions.
+6. **Model deployment (1/1 — `radio-222-2`):** Deployed as a FastAPI service in `predict.py` with `/health`, `/predict`, and `/docs`.
+7. **Dependency and environment management (2/2 — `radio-223-3`):** `pyproject.toml`, `uv.lock`, and `.python-version` (`3.12`) with clear `uv sync --locked` and `.venv` activation instructions in `README.md`.
+8. **Containerization (2/2 — `radio-224-3`):** Multi-stage `Dockerfile` that trains and packages the artifact during image build, documented with `docker build`/`docker run` commands and `examples/docker-demo.png`.
+9. **Cloud deployment (2/2 — `radio-225-3`):** Includes `render.yaml` Blueprint for Render Docker cloud deployment, step-by-step Render deployment instructions in `README.md`, and verification screenshot `examples/docker-demo.png`.
+
 - **Note to Peer:**
-  > Unfortunately, `https://github.com/tishapereira20/flight_price_prediction` returns HTTP 404 (Repository not found) when accessed publicly or via `git clone` during the peer evaluation window. Please ensure the repository is Public and the GitHub URL is accessible.
+  > Exemplary ML engineering! Keeping identical predictor profiles grouped across train/CV/holdout splits, excluding leakage-prone post-session features (`PageValues`, `BounceRates`, `ExitRates`), evaluating with Average Precision + calibration curves on an imbalanced target, and shipping a multi-stage `uv`-locked `Dockerfile` + `render.yaml` Blueprint makes this a model 16/16 submission.
 
 ---
 
@@ -73,4 +95,3 @@
 
 - **Note to Peer:**
   > Thoughtful domain feature engineering in `pipeline.py` and `previous_season.py` (especially grouping train/val/test splits by `game_id` so opponent rows never leak across splits, and backfilling Week 1 opener stats from the prior season)! For the Capstone project, consider serializing the trained champion model (`pickle`/`joblib`) and serving it via a FastAPI/Flask `/predict` endpoint inside your Docker container so it earns full deployment and cloud points.
-
