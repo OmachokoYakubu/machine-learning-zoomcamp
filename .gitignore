@@ -51,3 +51,4 @@ venv.bak/
 *.tar.gz
 *.csv
 !midterm-project/data/*.csv
+08-deep-learning/data/

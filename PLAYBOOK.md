@@ -16,8 +16,8 @@
 | **Module 04** | **Evaluation Metrics for Classification** | 2026-10-12 | **Completed** | ROC AUC, Precision/Recall intersection, F1 max, 5-Fold CV |
 | **Module 05** | **Deploying Machine Learning Models** | 2026-10-19 | **Completed** | Pinned artifact inference, FastAPI service, Docker container |
 | **Module 06** | **Decision Trees & Ensemble Learning** | 2026-10-26 | **Completed** | Decision trees, Random Forests, XGBoost (`06-trees/`) |
-| **Midterm** | **Midterm Project (`BikePulse`)** | 2026-11-16 *(Portal live deadline; Peer review: 2026-11-23)* | **Completed / CI Green** | End-to-end ML project (`midterm-project/`, Test RMSE `38.71`, $R^2=0.9527$) & 3 peer reviews |
-| **Module 08** | **Deep Learning & Neural Networks** | 2026-11-30 | Upcoming | Computer vision, CNNs, PyTorch image classification |
+| **Midterm** | **Midterm Project (`BikePulse`)** | 2026-11-16 *(Portal live deadline; Peer review: 2026-11-23)* | **Completed / CI Green** | End-to-end ML project (`midterm-project/`, Test RMSE `38.71`, $R^2=0.9527`) & 3 peer reviews (`midterm-peer-review-evaluations.md`) |
+| **Module 08** | **Deep Learning & Neural Networks** | 2026-11-30 | **Completed** | PyTorch Hair Type CNN, deterministic CPU baseline & data augmentation (`08-deep-learning/`) |
 | **Module 09** | **Serverless Deep Learning** | 2026-12-07 | Upcoming | Serverless deployment, ONNX, AWS Lambda, Docker |
 | **Module 10** | **Kubernetes & Model Serving** | 2026-12-14 | Upcoming | Kubernetes clusters, ingress, horizontal pod autoscaling |
 | **Capstone 1** | **Capstone Project 1** | 2027-01-04 *(Peer review: 2027-01-11)* | Upcoming | Capstone project submission & peer review |
@@ -115,5 +115,22 @@
 | **Q4** | **Tuning `max_depth` (`[10, 15, 20, 25]`)** | Lowest mean $\text{RMSE} = 1.7554$ at $\text{max\_depth} = 10$ | **10** |
 | **Q5** | **Most Important Feature (`max_depth=20, n=10`)** | `vehicle_weight` importance $= 0.2039$ | **`vehicle_weight`** |
 | **Q6** | **XGBoost Learning Rate (`eta` $\in \{0.3, 0.1\}$)** | $\eta = 0.1$ achieves lower validation $\text{RMSE} = 1.7248$ (vs $1.8265$) | **0.1** |
+
+---
+
+### Homework 8: Neural Networks and Deep Learning
+* **Portal Link:** [courses.datatalks.club/ml-zoomcamp-2026/homework/hw08](https://courses.datatalks.club/ml-zoomcamp-2026/homework/hw08)
+* **Dataset:** Hair Type Dataset (`data.zip`, SHA-256: `9e53453e3017502f22860cb08558f0cdb343e102fb61feab75960616185e7d67`, `800` train / `201` test images)
+* **Reference Stack:** Python `3.11`, `torch==2.9.0+cpu`, `torchvision==0.24.0+cpu`, `numpy==2.3.3`, `Pillow==11.3.0`, `SEED=42`
+
+| Question | Topic | Raw Reference Output | Submitted Value / Option | Form ID / Name |
+| :--- | :--- | :--- | :--- | :--- |
+| **Q1** | **Loss Function** | Single logit output + stable sigmoid-BCE | **`nn.BCEWithLogitsLoss()`** | `radio-689-2` (`answer_689`) |
+| **Q2** | **Total Trainable Parameters** | $896 + 20,072,512 + 65 = 20,073,473$ | **`20073473`** | `radio-690-4` (`answer_690`) |
+| **Q3** | **Median Baseline Training Accuracy** | $\text{median} = 0.808125$ (2 decimal places) | **`0.81`** | `answer_691` |
+| **Q4** | **Baseline Training Loss Std (`ddof=0`)** | $\sigma = 0.139341$ (3 decimal places) | **`0.139`** | `answer_692` |
+| **Q5** | **Mean Augmented Evaluation Loss** | $\mu = 0.575419$ (3 decimal places) | **`0.575`** | `answer_693` |
+| **Q6** | **Mean Augmented Eval Accuracy (Epochs 6–10)** | $\mu = 0.723383$ (2 decimal places) | **`0.72`** | `answer_694` |
+
 
 

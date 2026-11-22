@@ -19,7 +19,8 @@ This repository contains all homework assignments, exploratory data analysis not
 | **05** | **Deploying Machine Learning Models** | [`05-deployment/`](./05-deployment/) | ✅ Completed | Pinned model loading, FastAPI service, Docker containerization, inference verification |
 | **06** | **Decision Trees & Ensemble Learning** | [`06-trees/`](./06-trees/) | ✅ Completed | Decision trees, Random Forest, XGBoost gradient boosting |
 | **Midterm** | **Midterm Project — BikePulse** | [`midterm-project/`](./midterm-project/) | 🚀 **Submitted** | Urban micromobility hourly demand forecasting (EDA, 4 model families, FastAPI, Docker, K8s) |
-| **08** | **Deep Learning & Neural Networks** | `08-deep-learning/` | ⏳ Upcoming | TensorFlow/Keras, CNNs, transfer learning |
+| **Midterm Eval** | **Midterm Peer Review Evaluations** | [`midterm-peer-review-evaluations.md`](./midterm-peer-review-evaluations.md) | ✅ **Completed** | 9-Criterion rubric evaluations for 3 assigned Midterm submissions (`#14893`, `#14894`, `#14895`) |
+| **08** | **Deep Learning & Neural Networks** | [`08-deep-learning/`](./08-deep-learning/) | ✅ **Completed** | PyTorch Hair Type CNN (`20,073,473` params), deterministic CPU baseline & data augmentation |
 | **09** | **Serverless Deep Learning** | `09-serverless/` | ⏳ Upcoming | AWS Lambda, TF-Lite, containerized serverless inference |
 | **10** | **Kubernetes & Model Serving** | `10-kubernetes/` | ⏳ Upcoming | Kubernetes deployments, services, HPA, TF-Serving |
 | **Capstone** | **Capstone Project** | `capstone-project/` | ⏳ Upcoming | Final production-grade capstone project |
